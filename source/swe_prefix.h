@@ -24,16 +24,13 @@
     !defined(SOUNDWAVE_USING_ALSA) && !defined(SOUNDWAVE_USING_SDLMIXER) && \
     !defined(SOUNDWAVE_USING_PULSE)                                         \
 
-	#if defined(_WIN32)
-		#define SOUNDWAVE_USING_WINMM
-	#endif
-	#if defined(__linux__)
-		#define SOUNDWAVE_USING_PULSE
-	#endif
-	#if defined(__APPLE__)
-		#define SOUNDWAVE_USING_SDLMIXER
-	#endif
 	#if defined(__EMSCRIPTEN__)
+		#define SOUNDWAVE_USING_SDLMIXER
+	#elif defined(_WIN32)
+		#define SOUNDWAVE_USING_WINMM
+	#elif defined(__linux__)
+		#define SOUNDWAVE_USING_PULSE
+	#elif defined(__APPLE__)
 		#define SOUNDWAVE_USING_SDLMIXER
 	#endif
 
