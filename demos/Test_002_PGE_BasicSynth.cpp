@@ -36,7 +36,7 @@ protected: // Sound Specific
 	float Synthesizer_OnGetSample(uint32_t nChannel, double dTime)
 	{
 		synth.Update(nChannel, dTime, 1.0 / 44100.0);		
-		return osc1.output.value;
+		return float(osc1.output.value);
 	}
 	
 public:
