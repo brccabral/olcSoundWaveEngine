@@ -195,7 +195,7 @@
 
 	Author
 	~~~~~~
-	David Barr, aka javidx9, ©OneLoneCoder 2018, 2019, 2020, 2021, 2022
+	David Barr, aka javidx9, ï¿½OneLoneCoder 2018, 2019, 2020, 2021, 2022
 */
 #pragma endregion
 
@@ -375,8 +375,7 @@ int main()
 	#if _MSC_VER >= 1920 && _MSVC_LANG >= 201703L
 		#undef USE_EXPERIMENTAL_FS
 	#endif
-#endif
-#if defined(__linux__) || defined(__MINGW32__) || defined(__EMSCRIPTEN__) || defined(__FreeBSD__) || defined(__APPLE__)
+#elif defined(__linux__) || defined(__MINGW32__) || defined(__EMSCRIPTEN__) || defined(__FreeBSD__) || defined(__APPLE__)
 	#if __cplusplus >= 201703L
 		#undef USE_EXPERIMENTAL_FS
 	#endif

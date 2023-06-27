@@ -38,6 +38,7 @@
 /source/x64/Debug
 build_dir/
 build_em/
+build_win/
 
 # ignore binary of tools
 tools/headerify
