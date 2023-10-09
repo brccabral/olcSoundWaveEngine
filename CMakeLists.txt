@@ -48,6 +48,7 @@ foreach(_demoSource IN LISTS _demoSourceFiles) #######################
 
 get_filename_component(OutputExecutable ${_demoSource} NAME_WE)
 add_executable(${OutputExecutable} ${_demoSource})
+install(TARGETS ${OutputExecutable})
 
 ######################################################################
 # MacOS
@@ -307,6 +308,9 @@ foreach(fn ${src_data_files})
         COMMAND ${CMAKE_COMMAND} -E copy ${SOURCE_DATA_DIR}/${fn} ${DATA_OUTPUT_DIR}/${fn}
         MAIN_DEPENDENCY ${SOURCE_DATA_DIR}/${fn})
     list(APPEND out_data_files ${DATA_OUTPUT_DIR}/${fn})
+    install(FILES ${SOURCE_DATA_DIR}/${fn}
+        DESTINATION ${CMAKE_INSTALL_PREFIX}/bin/assets)
+
 endforeach()
 
 add_custom_target(copy_data DEPENDS ${out_data_files})
