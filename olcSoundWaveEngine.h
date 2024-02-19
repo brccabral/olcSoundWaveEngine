@@ -453,7 +453,7 @@ namespace olc::sound
 	{
 	public:
 		Wave_generic() = default;
-		Wave_generic(std::string sWavFile) { LoadAudioWaveform(sWavFile); }
+		Wave_generic(const std::string &sWavFile) { LoadAudioWaveform(sWavFile); }
 		Wave_generic(std::istream& sStream) { LoadAudioWaveform(sStream); }
 		Wave_generic(const char* pData, const size_t nBytes) { LoadAudioWaveform(pData, nBytes); }
 
@@ -915,7 +915,7 @@ namespace olc::sound::driver
 	private:
 		void DriverLoop();
 
-		pa_simple *m_pPA;
+		pa_simple *m_pPA = nullptr;
 		std::atomic<bool> m_bDriverLoopActive{ false };
 		std::thread m_thDriverLoop;
 	};
@@ -928,9 +928,10 @@ namespace olc::sound::driver
 namespace olc::sound
 {	
 	WaveEngine::WaveEngine()
+    :
+		m_sInputDevice("NONE"),
+		m_sOutputDevice("DEFAULT")
 	{
-		m_sInputDevice = "NONE";
-		m_sOutputDevice = "DEFAULT";
 
 #if defined(SOUNDWAVE_USING_WINMM)
 		m_driver = std::make_unique<driver::WinMM>(this);
